@@ -539,6 +539,41 @@ const FlameNode = ({ id }) => (
   </div>
 );
 
+const Lcd1602Node = ({ id }) => (
+  <div style={{ position: 'relative', width: '380px', height: '170px' }}>
+    <img
+      src={process.env.PUBLIC_URL + '/lcd.png'}
+      alt="LCD 1602 Display"
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+        display: 'block',
+        borderRadius: '6px',
+        filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.4))',
+      }}
+    />
+
+    {/* --- PIN SUPERIORI (Da sinistra a destra: 16 Pin) --- */}
+    <Handle type="source" position={Position.Top} id={`${id}-gnd`} style={{ ...pinStyle, top: '1.5%', left: '8.2%', background: '#000000' }} title="GND" />
+    <Handle type="source" position={Position.Top} id={`${id}-vcc`} style={{ ...pinStyle, top: '1.5%', left: '11.4%', background: '#ff0000' }} title="VCC" />
+    <Handle type="source" position={Position.Top} id={`${id}-v0`} style={{ ...pinStyle, top: '1.5%', left: '14.6%', background: '#cba6f7' }} title="V0 (Contrast)" />
+    <Handle type="source" position={Position.Top} id={`${id}-rs`} style={{ ...pinStyle, top: '1.5%', left: '17.8%', background: '#89b4fa' }} title="RS" />
+    <Handle type="source" position={Position.Top} id={`${id}-rw`} style={{ ...pinStyle, top: '1.5%', left: '21.0%', background: '#89b4fa' }} title="RW" />
+    <Handle type="source" position={Position.Top} id={`${id}-e`} style={{ ...pinStyle, top: '1.5%', left: '24.2%', background: '#89b4fa' }} title="E (Enable)" />
+    <Handle type="source" position={Position.Top} id={`${id}-db0`} style={{ ...pinStyle, top: '1.5%', left: '27.4%', background: '#f9e2af' }} title="DB0" />
+    <Handle type="source" position={Position.Top} id={`${id}-db1`} style={{ ...pinStyle, top: '1.5%', left: '30.6%', background: '#f9e2af' }} title="DB1" />
+    <Handle type="source" position={Position.Top} id={`${id}-db2`} style={{ ...pinStyle, top: '1.5%', left: '33.8%', background: '#f9e2af' }} title="DB2" />
+    <Handle type="source" position={Position.Top} id={`${id}-db3`} style={{ ...pinStyle, top: '1.5%', left: '37.0%', background: '#f9e2af' }} title="DB3" />
+    <Handle type="source" position={Position.Top} id={`${id}-db4`} style={{ ...pinStyle, top: '1.5%', left: '40.2%', background: '#f9e2af' }} title="DB4" />
+    <Handle type="source" position={Position.Top} id={`${id}-db5`} style={{ ...pinStyle, top: '1.5%', left: '43.4%', background: '#f9e2af' }} title="DB5" />
+    <Handle type="source" position={Position.Top} id={`${id}-db6`} style={{ ...pinStyle, top: '1.5%', left: '46.6%', background: '#f9e2af' }} title="DB6" />
+    <Handle type="source" position={Position.Top} id={`${id}-db7`} style={{ ...pinStyle, top: '1.5%', left: '49.8%', background: '#f9e2af' }} title="DB7" />
+    <Handle type="source" position={Position.Top} id={`${id}-led-a`} style={{ ...pinStyle, top: '1.5%', left: '53.0%', background: '#ff0000' }} title="LED+ (Anode)" />
+    <Handle type="source" position={Position.Top} id={`${id}-led-k`} style={{ ...pinStyle, top: '1.5%', left: '56.2%', background: '#000000' }} title="LED- (Cathode)" />
+  </div>
+);
+
 const RelayNode = ({ id }) => (
   <div style={{ position: 'relative', width: '220px', height: '80px' }}>
     <img
@@ -594,6 +629,7 @@ const nodeTypes = {
   buttonsModuleNode: ButtonsModuleNode,
   mq2Node: MQ2Node,
   flameNode: FlameNode,
+  lcdNode: Lcd1602Node,
   relayNode: RelayNode,
   motorNode: MotorNode,
   ledNode: LedNode,
@@ -721,6 +757,10 @@ export default function App() {
           
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'buttonsModuleNode')} draggable style={itemStyle}>
           🔘 Modul sa 5 Tastera
+          </div>
+
+          <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'lcdNode')} draggable style={itemStyle}>
+          🖥️ LCD 16x2 Display
           </div>
 
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'mq2Node')} draggable style={itemStyle}>
