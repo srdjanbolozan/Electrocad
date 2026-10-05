@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+/* 1. Podiže ceo SVG sloj sa žicama iznad čvorova/komponenti */
+.react-flow__edges {
+  z-index: 1000 !important;
+}
+
+.react-flow__edgelayer {
+  z-index: 1000 !important;
+}
+
+/* 2. Omogućava kliktanje kroz prazan prostor SVG-a na komponente ispod */
+.react-flow__edges svg {
+  z-index: 1000 !important;
+  overflow: visible !important;
+  pointer-events: none !important;
+}
+
+/* 3. Vraća mogućnost klika/selekcije na same žice */
+.react-flow__edge-path,
+.react-flow__edge-interaction {
+  pointer-events: all !important;
+}
+
+/* 4. Osigurava da čvorovi ostanu ispod žica */
+.react-flow__nodes,
+.react-flow__node {
+  z-index: 1 !important;
+}

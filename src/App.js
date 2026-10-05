@@ -656,23 +656,27 @@ export default function App() {
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const [selectedColor, setSelectedColor] = useState(WIRE_COLORS[0].color);
 
-  const onConnect = useCallback(
-    (params) => {
-      setEdges((eds) =>
-        addEdge(
-          {
-            ...params,
-            animated: false,
-            style: { stroke: selectedColor, strokeWidth: 4, zIndex: 1000 },
-            zIndex: 1000,
-          },
-          eds
-        )
-      );
-    },
-    [selectedColor, setEdges]
-  );
+ const onConnect = useCallback(
+  (params) =>
+    setEdges((eds) => {
+      // Izračunavamo offset tako da svaka nova žica ima drugačiju odmaknutost
+      const offsetValue = 15 + eds.length * 12; 
 
+      return addEdge(
+        {
+          ...params,
+          type: 'smoothstep',
+          pathOptions: {
+            borderRadius: 10 + (eds.length % 5) * 4,
+            offset: offsetValue,
+          },
+          style: { strokeWidth: 3, stroke: selectedColor }, // Tvoja izabrana boja žice
+        },
+        eds
+      );
+    }),
+  [setEdges, selectedColor]
+);
   const onDragOver = useCallback((event) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
@@ -812,6 +816,25 @@ export default function App() {
             ))}
           </div>
 
+
+          <style>{`
+  .react-flow__edges, .react-flow__edgelayer {
+    z-index: 1000 !important;
+  }
+  .react-flow__edges svg {
+    z-index: 1000 !important;
+    overflow: visible !important;
+    pointer-events: none !important;
+  }
+  .react-flow__edge-path, .react-flow__edge-interaction {
+    pointer-events: all !important;
+  }
+  .react-flow__nodes, .react-flow__node {
+    z-index: 1 !important;
+  }
+`}</style>
+
+
           <ReactFlow
             nodes={nodes}
             edges={edges}
@@ -825,6 +848,17 @@ export default function App() {
             connectionMode="loose"
             elevatedEdges={true}
             connectionLineStyle={{ stroke: selectedColor, strokeWidth: 4 }}
+            defaultEdgeOptions={{
+             type: 'smoothstep', // Postavlja zaobljene trajektorije sa pravim uglovima
+              animated: false,
+               pathOptions: {
+                borderRadius: 12, // Blago zaobljeni uglovi
+                 offset: 60,       // Veća udaljenost/rastojanje između paralelnih linija
+               },
+            style: { strokeWidth: 3 }, // Debljina žice
+            }}
+
+
             deleteKeyCode={['Backspace', 'Delete']}
             fitView
           >
