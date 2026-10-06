@@ -497,17 +497,17 @@ const ThreePotModuleNode = ({ id }) => (
         height: '100%',
         objectFit: 'contain',
         display: 'block',
-        borderRadius: '6px',
+        borderRadius: '16px',
         filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.4))',
       }}
     />
 
     {/* --- CRNI KONEKTOR H1 (Sleva na desno: GND, P1, P2, P3, +5V) --- */}
-    <Handle type="source" position={Position.Bottom} id={`${id}-gnd`} style={{ ...pinStyle, bottom: '13.5%', left: '29.5%', background: '#000000' }} title="GND" />
-    <Handle type="source" position={Position.Bottom} id={`${id}-p1`} style={{ ...pinStyle, bottom: '13.5%', left: '39.8%', background: '#f9e2af' }} title="P1 (Pot 1)" />
-    <Handle type="source" position={Position.Bottom} id={`${id}-p2`} style={{ ...pinStyle, bottom: '13.5%', left: '50.1%', background: '#f9e2af' }} title="P2 (Pot 2)" />
-    <Handle type="source" position={Position.Bottom} id={`${id}-p3`} style={{ ...pinStyle, bottom: '13.5%', left: '60.4%', background: '#f9e2af' }} title="P3 (Pot 3)" />
-    <Handle type="source" position={Position.Bottom} id={`${id}-5v`} style={{ ...pinStyle, bottom: '13.5%', left: '70.7%', background: '#ff0000' }} title="+5V" />
+    <Handle type="source" position={Position.Bottom} id={`${id}-gnd`} style={{ ...pinStyle, bottom: '21%', left: '29.5%', background: '#000000' }} title="GND" />
+    <Handle type="source" position={Position.Bottom} id={`${id}-p1`} style={{ ...pinStyle, bottom: '21%', left: '38.8%', background: '#f9e2af' }} title="P1 (Pot 1)" />
+    <Handle type="source" position={Position.Bottom} id={`${id}-p2`} style={{ ...pinStyle, bottom: '21%', left: '48.1%', background: '#f9e2af' }} title="P2 (Pot 2)" />
+    <Handle type="source" position={Position.Bottom} id={`${id}-p3`} style={{ ...pinStyle, bottom: '21%', left: '57.4%', background: '#f9e2af' }} title="P3 (Pot 3)" />
+    <Handle type="source" position={Position.Bottom} id={`${id}-5v`} style={{ ...pinStyle, bottom: '21%', left: '66.7%', background: '#ff0000' }} title="+5V" />
   </div>
 );
 
