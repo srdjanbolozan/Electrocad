@@ -487,7 +487,29 @@ const NanoExtendedBoardNode = ({ id }) => (
   </div>
 );
 
+const ThreePotModuleNode = ({ id }) => (
+  <div style={{ position: 'relative', width: '220px', height: '170px' }}>
+    <img
+      src={process.env.PUBLIC_URL + '/pots.png'}
+      alt="3x Potentiometer Module"
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+        display: 'block',
+        borderRadius: '6px',
+        filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.4))',
+      }}
+    />
 
+    {/* --- CRNI KONEKTOR H1 (Sleva na desno: GND, P1, P2, P3, +5V) --- */}
+    <Handle type="source" position={Position.Bottom} id={`${id}-gnd`} style={{ ...pinStyle, bottom: '13.5%', left: '29.5%', background: '#000000' }} title="GND" />
+    <Handle type="source" position={Position.Bottom} id={`${id}-p1`} style={{ ...pinStyle, bottom: '13.5%', left: '39.8%', background: '#f9e2af' }} title="P1 (Pot 1)" />
+    <Handle type="source" position={Position.Bottom} id={`${id}-p2`} style={{ ...pinStyle, bottom: '13.5%', left: '50.1%', background: '#f9e2af' }} title="P2 (Pot 2)" />
+    <Handle type="source" position={Position.Bottom} id={`${id}-p3`} style={{ ...pinStyle, bottom: '13.5%', left: '60.4%', background: '#f9e2af' }} title="P3 (Pot 3)" />
+    <Handle type="source" position={Position.Bottom} id={`${id}-5v`} style={{ ...pinStyle, bottom: '13.5%', left: '70.7%', background: '#ff0000' }} title="+5V" />
+  </div>
+);
 
 
 
@@ -630,6 +652,7 @@ const nodeTypes = {
   mq2Node: MQ2Node,
   flameNode: FlameNode,
   lcdNode: Lcd1602Node,
+  potsNode: ThreePotModuleNode,
   relayNode: RelayNode,
   motorNode: MotorNode,
   ledNode: LedNode,
@@ -765,6 +788,10 @@ export default function App() {
 
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'lcdNode')} draggable style={itemStyle}>
           🖥️ LCD 16x2 Display
+          </div>
+
+          <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'potsNode')} draggable style={itemStyle}>
+          🎛️ Modul 3 Potenciometra
           </div>
 
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'mq2Node')} draggable style={itemStyle}>
