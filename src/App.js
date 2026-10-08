@@ -487,6 +487,29 @@ const NanoExtendedBoardNode = ({ id }) => (
   </div>
 );
 
+const Dht11Node = ({ id }) => (
+  <div style={{ position: 'relative', width: '220px', height: '120px' }}>
+    <img
+      src={process.env.PUBLIC_URL + '/dht11.png'}
+      alt="DHT11 Sensor"
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+        display: 'block',
+        borderRadius: '16px',
+        filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.4))',
+      }}
+    />
+
+    {/* --- CRNI KONEKTOR (Odozgo na dole: +5V, DATA, NC, GND) --- */}
+    <Handle type="source" position={Position.Left} id={`${id}-5v`} style={{ ...pinStyle, top: '25%', left: '33%', background: '#ff0000' }} title="+5V" />
+    <Handle type="source" position={Position.Left} id={`${id}-data`} style={{ ...pinStyle, top: '44%', left: '33%', background: '#f9e2af' }} title="DATA" />
+    <Handle type="source" position={Position.Left} id={`${id}-nc`} style={{ ...pinStyle, top: '63%', left: '33%', background: '#888888' }} title="NC (Not Connected)" />
+    <Handle type="source" position={Position.Left} id={`${id}-gnd`} style={{ ...pinStyle, top: '82%', left: '33%', background: '#000000' }} title="GND" />
+  </div>
+);
+
 const ThreePotModuleNode = ({ id }) => (
   <div style={{ position: 'relative', width: '220px', height: '170px' }}>
     <img
@@ -652,6 +675,7 @@ const nodeTypes = {
   mq2Node: MQ2Node,
   flameNode: FlameNode,
   lcdNode: Lcd1602Node,
+  dht11Node: Dht11Node,
   potsNode: ThreePotModuleNode,
   relayNode: RelayNode,
   motorNode: MotorNode,
@@ -803,7 +827,9 @@ export default function App() {
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'sevenSegmentNode')} draggable style={itemStyle}>
           🔢 7-Segmentni Displej
           </div>
-
+          <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'dht11Node')} draggable style={itemStyle}>
+          🌡️ DHT11 Senzor
+          </div>
 
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'relayNode')} draggable style={itemStyle}>
           ⚡ Relej Modul (5V)
