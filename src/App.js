@@ -912,7 +912,7 @@ useEffect(() => {
             🔒 Motor Brave (12V)
           </div>
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'ledNode')} draggable style={itemStyle}>
-            💡 LED Dioda (Crvena)
+            🔴 LED Dioda
           </div>
 
           <hr style={{ borderColor: '#334155', margin: '15px 0' }} />
