@@ -487,6 +487,28 @@ const NanoExtendedBoardNode = ({ id }) => (
   </div>
 );
 
+const IrSensorNode = ({ id }) => (
+  <div style={{ position: 'relative', width: '250px', height: '100px' }}>
+    <img
+      src={process.env.PUBLIC_URL + '/irsensor.jpg'}
+      alt="IR Obstacle Sensor"
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+        display: 'block',
+        borderRadius: '16px',
+        filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.4))',
+      }}
+    />
+
+    {/* --- TROPINSKI KONEKTOR NA DESNOJ STRANI (Odozgo na dole: OUT, GND, VCC) --- */}
+    <Handle type="source" position={Position.Right} id={`${id}-out`} style={{ ...pinStyle, top: '35%', right: '2.5%', background: '#f9e2af' }} title="OUT" />
+    <Handle type="source" position={Position.Right} id={`${id}-gnd`} style={{ ...pinStyle, top: '50%', right: '2.5%', background: '#000000' }} title="GND" />
+    <Handle type="source" position={Position.Right} id={`${id}-vcc`} style={{ ...pinStyle, top: '65%', right: '2.5%', background: '#ff0000' }} title="VCC" />
+  </div>
+);
+
 const Dht11Node = ({ id }) => (
   <div style={{ position: 'relative', width: '220px', height: '120px' }}>
     <img
@@ -675,6 +697,7 @@ const nodeTypes = {
   mq2Node: MQ2Node,
   flameNode: FlameNode,
   lcdNode: Lcd1602Node,
+  irSensorNode: IrSensorNode,
   dht11Node: Dht11Node,
   potsNode: ThreePotModuleNode,
   relayNode: RelayNode,
@@ -829,6 +852,10 @@ export default function App() {
           </div>
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'dht11Node')} draggable style={itemStyle}>
           🌡️ DHT11 Senzor
+          </div>
+
+          <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'irSensorNode')} draggable style={itemStyle}>
+          🚨 IR Senzor Prepreka
           </div>
 
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'relayNode')} draggable style={itemStyle}>
