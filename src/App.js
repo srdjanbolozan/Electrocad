@@ -802,7 +802,7 @@ export default function App() {
             borderRadius: 10 + (eds.length % 5) * 4,
             offset: offsetValue,
           },
-          style: { strokeWidth: 3, stroke: selectedColor }, // Tvoja izabrana boja žice
+          style: { strokeWidth: 5, stroke: selectedColor }, // Tvoja izabrana boja žice
         },
         eds
       );
