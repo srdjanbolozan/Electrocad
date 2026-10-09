@@ -490,7 +490,7 @@ const NanoExtendedBoardNode = ({ id }) => (
 const IrSensorNode = ({ id }) => (
   <div style={{ position: 'relative', width: '250px', height: '100px' }}>
     <img
-      src={process.env.PUBLIC_URL + '/irsensor.jpg'}
+      src={process.env.PUBLIC_URL + '/ir.png'}
       alt="IR Obstacle Sensor"
       style={{
         width: '100%',
@@ -503,9 +503,9 @@ const IrSensorNode = ({ id }) => (
     />
 
     {/* --- TROPINSKI KONEKTOR NA DESNOJ STRANI (Odozgo na dole: OUT, GND, VCC) --- */}
-    <Handle type="source" position={Position.Right} id={`${id}-out`} style={{ ...pinStyle, top: '35%', right: '2.5%', background: '#f9e2af' }} title="OUT" />
+    <Handle type="source" position={Position.Right} id={`${id}-out`} style={{ ...pinStyle, top: '35%', right: '2.5%', background: '#ff0000' }} title="OUT" />
     <Handle type="source" position={Position.Right} id={`${id}-gnd`} style={{ ...pinStyle, top: '50%', right: '2.5%', background: '#000000' }} title="GND" />
-    <Handle type="source" position={Position.Right} id={`${id}-vcc`} style={{ ...pinStyle, top: '65%', right: '2.5%', background: '#ff0000' }} title="VCC" />
+    <Handle type="source" position={Position.Right} id={`${id}-vcc`} style={{ ...pinStyle, top: '65%', right: '2.5%', background: '#f9e2af' }} title="VCC" />
   </div>
 );
 
