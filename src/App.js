@@ -133,33 +133,44 @@ const MQ2Node = ({ id }) => (
 );
 
 
-const LedNode = ({ id }) => (
-  <div style={{ position: 'relative', width: '60px', height: '130px' }}>
+const LedNode = ({ id, data }) => (
+  <div
+    style={{
+      position: 'relative',
+      width: '100px',
+      height: '160px',
+      transform: `rotate(${data?.rotation || 0}deg)`,
+      transformOrigin: 'center center',
+      transition: 'transform 0.15s ease',
+    }}
+  >
     <img
-      src={process.env.PUBLIC_URL + '/led.png'}
-      alt="LED Dioda"
+      src={process.env.PUBLIC_URL + '/led.jpg'}
+      alt="LED Diode"
       style={{
         width: '100%',
         height: '100%',
         objectFit: 'contain',
         display: 'block',
-        filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.3))',
+        filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.4))',
       }}
     />
 
-    {/* PINOVI NA DNU: ANODA (Levo / +) i KATODA (Desno / -) */}
+    {/* --- NOŽICE LED DIODE (Dole) --- */}
+    {/* Leva nožica: Anoda (+) */}
     <Handle
       type="source"
       position={Position.Bottom}
       id={`${id}-anode`}
-      style={{ ...pinStyle, left: '33%', bottom: '2px', background: '#ff0000' }}
+      style={{ ...pinStyle, bottom: '2%', left: '41%', background: '#ff0000' }}
       title="Anoda (+)"
     />
+    {/* Desna nožica: Katoda (-) */}
     <Handle
       type="source"
       position={Position.Bottom}
       id={`${id}-cathode`}
-      style={{ ...pinStyle, left: '70%', bottom: '2px', background: '#000000' }}
+      style={{ ...pinStyle, bottom: '2%', left: '59%', background: '#000000' }}
       title="Katoda (-)"
     />
   </div>
