@@ -176,6 +176,49 @@ const LedNode = ({ id, data }) => (
   </div>
 );
 
+const ResistorNode = ({ id, data }) => (
+  <div
+    style={{
+      position: 'relative',
+      width: '180px',
+      height: '60px',
+      transform: `rotate(${data?.rotation || 0}deg)`,
+      transformOrigin: 'center center',
+      transition: 'transform 0.15s ease',
+    }}
+  >
+    <img
+      src={process.env.PUBLIC_URL + '/otpornik.png'}
+      alt="Resistor"
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+        display: 'block',
+        filter: 'drop-shadow(0px 4px 6px rgba(0,0,0,0.3))',
+      }}
+    />
+
+    {/* --- IZVODI OTPORNIKA --- */}
+    {/* Levi izvod */}
+    <Handle
+      type="source"
+      position={Position.Left}
+      id={`${id}-p1`}
+      style={{ ...pinStyle, top: '52%', left: '28%', background: '#888888' }}
+      title="Pin 1"
+    />
+    {/* Desni izvod */}
+    <Handle
+      type="source"
+      position={Position.Right}
+      id={`${id}-p2`}
+      style={{ ...pinStyle, top: '52%', right: '28%', background: '#888888' }}
+      title="Pin 2"
+    />
+  </div>
+);
+
 const ArduinoNanoNode = ({ id }) => (
   <div style={{ position: 'relative', width: '120px', height: '280px' }}>
     <img
@@ -721,6 +764,7 @@ const nodeTypes = {
   relayNode: RelayNode,
   motorNode: MotorNode,
   ledNode: LedNode,
+  resistorNode: ResistorNode
 };
 
 const WIRE_COLORS = [
@@ -913,6 +957,9 @@ useEffect(() => {
           </div>
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'ledNode')} draggable style={itemStyle}>
             🔴 LED Dioda
+          </div>
+          <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'resistorNode')} draggable style={itemStyle}>
+          ⚡ Otpornik
           </div>
 
           <hr style={{ borderColor: '#334155', margin: '15px 0' }} />
