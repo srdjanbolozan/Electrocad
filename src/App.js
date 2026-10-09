@@ -636,6 +636,40 @@ const Lcd1602Node = ({ id }) => (
   </div>
 );
 
+const LdrNode = ({ id }) => (
+  <div style={{ position: 'relative', width: '100px', height: '150px' }}>
+    <img
+      src={process.env.PUBLIC_URL + '/ldr.png'}
+      alt="LDR Photoresistor"
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+        display: 'block',
+        filter: 'drop-shadow(0px 4px 6px rgba(0,0,0,0.3))',
+      }}
+    />
+
+    {/* --- NOŽICE LDR FOTOOTPORNIKA --- */}
+    {/* Leva nožica */}
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-p1`}
+      style={{ ...pinStyle, bottom: '9%', left: '30%', background: '#888888' }}
+      title="Pin 1"
+    />
+    {/* Desna nožica */}
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-p2`}
+      style={{ ...pinStyle, bottom: '9%', left: '73.5%', background: '#888888' }}
+      title="Pin 2"
+    />
+  </div>
+);
+
 const RelayNode = ({ id }) => (
   <div style={{ position: 'relative', width: '220px', height: '80px' }}>
     <img
@@ -698,6 +732,7 @@ const nodeTypes = {
   relayNode: RelayNode,
   motorNode: MotorNode,
   ledNode: LedNode,
+  ldrNode: LdrNode,
   resistorNode: ResistorNode
 };
 
@@ -846,6 +881,10 @@ useEffect(() => {
           </div>
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'nanoPinsNode')} draggable style={itemStyle}>
           🔹 Nano Extended
+          </div>
+
+          <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'ldrNode')} draggable style={itemStyle}>
+          ☀️ LDR Fotootpornik
           </div>
           
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'ledArrayNode')} draggable style={itemStyle}>
