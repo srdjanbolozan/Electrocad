@@ -473,73 +473,7 @@ const ButtonsModuleNode = ({ id }) => (
   </div>
 );
 
-const NanoExtendedBoardNode = ({ id }) => (
-  <div style={{ position: 'relative', width: '380px', height: '285px' }}>
-    <img
-      src={process.env.PUBLIC_URL + '/nanorazvojreal.jpg'}
-      alt="Arduino Nano Extended Board"
-      style={{
-        width: '100%',
-        height: '100%',
-        objectFit: 'contain',
-        display: 'block',
-        borderRadius: '8px',
-        filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.5))',
-      }}
-    />
 
-    {/* --- 1. POWER KONEKTOR (Gore levo) --- */}
-    <Handle type="source" position={Position.Top} id={`${id}-pwr-vcc`} style={{ ...pinStyle, top: '22%', left: '11%', background: '#ff0000' }} title="Power +5V" />
-    <Handle type="source" position={Position.Top} id={`${id}-pwr-gnd`} style={{ ...pinStyle, top: '22%', left: '16%', background: '#000000' }} title="Power GND" />
-
-    {/* --- 2. RGB LED KONEKTOR (Gore, sredina-levo) --- */}
-    <Handle type="source" position={Position.Top} id={`${id}-rgb-r`} style={{ ...pinStyle, top: '20.5%', left: '37.5%', background: '#ff0000' }} title="RGB Red" />
-    <Handle type="source" position={Position.Top} id={`${id}-rgb-g`} style={{ ...pinStyle, top: '20.5%', left: '39.5%', background: '#00ff00' }} title="RGB Green" />
-    <Handle type="source" position={Position.Top} id={`${id}-rgb-b`} style={{ ...pinStyle, top: '20.5%', left: '41.5%', background: '#0000ff' }} title="RGB Blue" />
-    <Handle type="source" position={Position.Top} id={`${id}-rgb-gnd`} style={{ ...pinStyle, top: '20.5%', left: '43.5%', background: '#000000' }} title="RGB GND" />
-
-    {/* --- 3. 6x LED KONEKTOR (Gore, sredina-desno) --- */}
-    <Handle type="source" position={Position.Top} id={`${id}-led1`} style={{ ...pinStyle, top: '22%', left: '51%', background: '#89b4fa' }} title="LED1" />
-    <Handle type="source" position={Position.Top} id={`${id}-led2`} style={{ ...pinStyle, top: '22%', left: '53.5%', background: '#89b4fa' }} title="LED2" />
-    <Handle type="source" position={Position.Top} id={`${id}-led3`} style={{ ...pinStyle, top: '22%', left: '56%', background: '#89b4fa' }} title="LED3" />
-    <Handle type="source" position={Position.Top} id={`${id}-led4`} style={{ ...pinStyle, top: '22%', left: '58.5%', background: '#89b4fa' }} title="LED4" />
-    <Handle type="source" position={Position.Top} id={`${id}-led5`} style={{ ...pinStyle, top: '22%', left: '61%', background: '#89b4fa' }} title="LED5" />
-    <Handle type="source" position={Position.Top} id={`${id}-led6`} style={{ ...pinStyle, top: '22%', left: '63.5%', background: '#89b4fa' }} title="LED6" />
-
-    {/* --- 4. 7-SEGMENTNI DISPLEJ KONEKTOR (Gore desno) --- */}
-    <Handle type="source" position={Position.Top} id={`${id}-7seg-a`} style={{ ...pinStyle, top: '26.5%', left: '76%', background: '#f9e2af' }} title="7Seg A" />
-    <Handle type="source" position={Position.Top} id={`${id}-7seg-b`} style={{ ...pinStyle, top: '26.5%', left: '78.5%', background: '#f9e2af' }} title="7Seg B" />
-    <Handle type="source" position={Position.Top} id={`${id}-7seg-c`} style={{ ...pinStyle, top: '26.5%', left: '81%', background: '#f9e2af' }} title="7Seg C" />
-    <Handle type="source" position={Position.Top} id={`${id}-7seg-d`} style={{ ...pinStyle, top: '26.5%', left: '83.5%', background: '#f9e2af' }} title="7Seg D" />
-
-    {/* --- 5. TASTER KONEKTOR / 5xBTN (Sredina) --- */}
-    <Handle type="source" position={Position.Top} id={`${id}-btn1`} style={{ ...pinStyle, top: '32%', left: '46.5%', background: '#cba6f7' }} title="BTN1" />
-    <Handle type="source" position={Position.Top} id={`${id}-btn2`} style={{ ...pinStyle, top: '32%', left: '49%', background: '#cba6f7' }} title="BTN2" />
-    <Handle type="source" position={Position.Top} id={`${id}-btn3`} style={{ ...pinStyle, top: '32%', left: '51.5%', background: '#cba6f7' }} title="BTN3" />
-
-    {/* --- 6. POTENCIOMETRI KONEKTOR / POT (Sredina desno) --- */}
-    <Handle type="source" position={Position.Top} id={`${id}-pot1`} style={{ ...pinStyle, top: '46.5%', left: '76.5%', background: '#fab387' }} title="POT1" />
-    <Handle type="source" position={Position.Top} id={`${id}-pot2`} style={{ ...pinStyle, top: '46.5%', left: '79%', background: '#fab387' }} title="POT2" />
-    <Handle type="source" position={Position.Top} id={`${id}-pot3`} style={{ ...pinStyle, top: '46.5%', left: '81.5%', background: '#fab387' }} title="POT3" />
-
-    {/* --- 7. LCD 16x2 KONEKTOR (Levo dole) --- */}
-    <Handle type="source" position={Position.Top} id={`${id}-lcd-vcc`} style={{ ...pinStyle, top: '61.5%', left: '9%', background: '#ff0000' }} title="LCD VCC" />
-    <Handle type="source" position={Position.Top} id={`${id}-lcd-gnd`} style={{ ...pinStyle, top: '61.5%', left: '12%', background: '#000000' }} title="LCD GND" />
-    <Handle type="source" position={Position.Top} id={`${id}-lcd-sda`} style={{ ...pinStyle, top: '61.5%', left: '15%', background: '#89b4fa' }} title="LCD SDA" />
-    <Handle type="source" position={Position.Top} id={`${id}-lcd-scl`} style={{ ...pinStyle, top: '61.5%', left: '18%', background: '#89b4fa' }} title="LCD SCL" />
-
-    {/* --- 8. DHT11 / SENZOR TEMPERATURE KONEKTOR (Sredina dole) --- */}
-    <Handle type="source" position={Position.Top} id={`${id}-dht-vcc`} style={{ ...pinStyle, top: '56.5%', left: '58.5%', background: '#ff0000' }} title="DHT VCC" />
-    <Handle type="source" position={Position.Top} id={`${id}-dht-data`} style={{ ...pinStyle, top: '56.5%', left: '60.5%', background: '#89b4fa' }} title="DHT DATA" />
-    <Handle type="source" position={Position.Top} id={`${id}-dht-gnd`} style={{ ...pinStyle, top: '56.5%', left: '62.5%', background: '#000000' }} title="DHT GND" />
-
-    {/* --- 9. ULTRASONIČNI SENZOR KONEKTOR / ULTRASONIC (Dole desno) --- */}
-    <Handle type="source" position={Position.Top} id={`${id}-us-vcc`} style={{ ...pinStyle, top: '75%', left: '67.5%', background: '#ff0000' }} title="US VCC" />
-    <Handle type="source" position={Position.Top} id={`${id}-us-trig`} style={{ ...pinStyle, top: '75%', left: '70%', background: '#89b4fa' }} title="US TRIG" />
-    <Handle type="source" position={Position.Top} id={`${id}-us-echo`} style={{ ...pinStyle, top: '75%', left: '72.5%', background: '#89b4fa' }} title="US ECHO" />
-    <Handle type="source" position={Position.Top} id={`${id}-us-gnd`} style={{ ...pinStyle, top: '75%', left: '75%', background: '#000000' }} title="US GND" />
-  </div>
-);
 
 const IrSensorNode = ({ id,data }) => (
   <div style={{ 
@@ -749,7 +683,7 @@ const MotorNode = ({ id }) => (
 const nodeTypes = {
   esp32Node: ESP32Node,
   nanoNode: ArduinoNanoNode,
-  nanoBoardNode: NanoExtendedBoardNode,
+  
   nanoPinsNode: NanoExtendedPinsNode,
   unoNode: ArduinoUnoNode,
   ledArrayNode: LedArrayNode,
@@ -910,15 +844,14 @@ useEffect(() => {
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'unoNode')} draggable style={itemStyle}>
           🟦 Arduino Uno
           </div>
-          <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'nanoBoardNode')} draggable style={itemStyle}>
-          🎛️ Nano Razvojna Pločica
-          </div>
-          <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'ledArrayNode')} draggable style={itemStyle}>
-          🚨 Modul 6 LED Dioda
-          </div>
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'nanoPinsNode')} draggable style={itemStyle}>
           🔹 Nano Extended
           </div>
+          
+          <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'ledArrayNode')} draggable style={itemStyle}>
+          🚨 Modul 6 LED Dioda
+          </div>
+          
           
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'buttonsModuleNode')} draggable style={itemStyle}>
           🔘 Modul sa 5 Tastera
