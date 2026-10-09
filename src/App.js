@@ -487,8 +487,15 @@ const NanoExtendedBoardNode = ({ id }) => (
   </div>
 );
 
-const IrSensorNode = ({ id }) => (
-  <div style={{ position: 'relative', width: '250px', height: '100px' }}>
+const IrSensorNode = ({ id,data }) => (
+  <div style={{ 
+    position: 'relative', 
+    width: '250px', 
+    height: '100px' ,
+    transform: `rotate(${data?.rotation || 0}deg)`, // Dodato za rotaciju
+    transformOrigin: 'center center',
+    transition: 'transform 0.15s ease'
+    }}>
     <img
       src={process.env.PUBLIC_URL + '/ir.png'}
       alt="IR Obstacle Sensor"
@@ -774,6 +781,35 @@ export default function App() {
     },
     [reactFlowInstance, setNodes]
   );
+
+// Ubacuje se samo jednom unutar App komponente
+useEffect(() => {
+  const handleKeyDown = (event) => {
+    if (event.code === 'Space' || event.key === ' ') {
+      event.preventDefault();
+
+      setNodes((nds) =>
+        nds.map((node) => {
+          if (node.selected) {
+            const currentRotation = node.data?.rotation || 0;
+            return {
+              ...node,
+              data: {
+                ...node.data,
+                rotation: (currentRotation + 90) % 360,
+              },
+            };
+          }
+          return node;
+        })
+      );
+    }
+  };
+
+  window.addEventListener('keydown', handleKeyDown);
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, [setNodes]);
+
 
   const exportImage = () => {
     if (reactFlowWrapper.current === null) return;
