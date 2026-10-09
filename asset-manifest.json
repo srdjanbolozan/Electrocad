@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Electrocad/static/css/main.616ba065.css",
-    "main.js": "/Electrocad/static/js/main.014e919d.js",
+    "main.js": "/Electrocad/static/js/main.8b3e715c.js",
     "static/js/453.3cd7187a.chunk.js": "/Electrocad/static/js/453.3cd7187a.chunk.js",
     "index.html": "/Electrocad/index.html",
     "main.616ba065.css.map": "/Electrocad/static/css/main.616ba065.css.map",
-    "main.014e919d.js.map": "/Electrocad/static/js/main.014e919d.js.map",
+    "main.8b3e715c.js.map": "/Electrocad/static/js/main.8b3e715c.js.map",
     "453.3cd7187a.chunk.js.map": "/Electrocad/static/js/453.3cd7187a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.616ba065.css",
-    "static/js/main.014e919d.js"
+    "static/js/main.8b3e715c.js"
   ]
 }
