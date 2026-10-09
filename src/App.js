@@ -145,7 +145,7 @@ const LedNode = ({ id, data }) => (
     }}
   >
     <img
-      src={process.env.PUBLIC_URL + '/led.jpg'}
+      src={process.env.PUBLIC_URL + '/led.png'}
       alt="LED Diode"
       style={{
         width: '100%',
@@ -162,7 +162,7 @@ const LedNode = ({ id, data }) => (
       type="source"
       position={Position.Bottom}
       id={`${id}-anode`}
-      style={{ ...pinStyle, bottom: '2%', left: '41%', background: '#ff0000' }}
+      style={{ ...pinStyle, bottom: '19%', left: '42%', background: '#ff0000' }}
       title="Anoda (+)"
     />
     {/* Desna nožica: Katoda (-) */}
@@ -170,7 +170,7 @@ const LedNode = ({ id, data }) => (
       type="source"
       position={Position.Bottom}
       id={`${id}-cathode`}
-      style={{ ...pinStyle, bottom: '2%', left: '59%', background: '#000000' }}
+      style={{ ...pinStyle, bottom: '19%', left: '58%', background: '#000000' }}
       title="Katoda (-)"
     />
   </div>
