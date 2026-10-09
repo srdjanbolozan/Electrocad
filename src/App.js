@@ -561,7 +561,7 @@ const ThreePotModuleNode = ({ id }) => (
 const FlameNode = ({ id }) => (
   <div style={{ position: 'relative', width: '220px', height: '80px' }}>
     <img
-      src={process.env.PUBLIC_URL + '/flame-sensor.png'}
+      src={process.env.PUBLIC_URL + '/flamesensor.png'}
       alt="Senzor Plamena"
       style={{
         width: '100%',
