@@ -636,6 +636,52 @@ const Lcd1602Node = ({ id }) => (
   </div>
 );
 
+const UltrasonicNode = ({ id }) => (
+  <div style={{ position: 'relative', width: '220px', height: '130px' }}>
+    <img
+      src={process.env.PUBLIC_URL + '/ultrasonic.png'}
+      alt="HC-SR04 Ultrasonic Sensor"
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+        display: 'block',
+        filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.4))',
+      }}
+    />
+
+    {/* --- 4 METALNA PINA NA DNU (Sleva na desno: Vcc, Trig, Echo, GND) --- */}
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-vcc`}
+      style={{ ...pinStyle, bottom: '2%', left: '40.7%', background: '#ff0000' }}
+      title="Vcc (+5V)"
+    />
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-trig`}
+      style={{ ...pinStyle, bottom: '2%', left: '46.5%', background: '#89b4fa' }}
+      title="Trig (Trigger)"
+    />
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-echo`}
+      style={{ ...pinStyle, bottom: '2%', left: '51.9%', background: '#89b4fa' }}
+      title="Echo"
+    />
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-gnd`}
+      style={{ ...pinStyle, bottom: '2%', left: '57.4%', background: '#000000' }}
+      title="GND"
+    />
+  </div>
+);
+
 const LdrNode = ({ id }) => (
   <div style={{ position: 'relative', width: '100px', height: '150px' }}>
     <img
@@ -717,7 +763,7 @@ const MotorNode = ({ id }) => (
 const nodeTypes = {
   esp32Node: ESP32Node,
   nanoNode: ArduinoNanoNode,
-  
+  ultrasonicNode: UltrasonicNode,
   nanoPinsNode: NanoExtendedPinsNode,
   unoNode: ArduinoUnoNode,
   ledArrayNode: LedArrayNode,
@@ -910,6 +956,11 @@ useEffect(() => {
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'flameNode')} draggable style={itemStyle}>
           🔥 Senzor Plamena
           </div>
+          <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'ultrasonicNode')} draggable style={itemStyle}>
+          🦇 Ultrazvučni Senzor (HC-SR04)
+          </div>
+
+
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'sevenSegmentNode')} draggable style={itemStyle}>
           🔢 7-Segmentni Displej
           </div>
