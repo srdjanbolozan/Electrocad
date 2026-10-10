@@ -635,6 +635,94 @@ const Lcd1602Node = ({ id }) => (
     <Handle type="source" position={Position.Top} id={`${id}-led-k`} style={{ ...pinStyle, top: '1.5%', left: '56.2%', background: '#000000' }} title="LED- (Cathode)" />
   </div>
 );
+const ProtoboardNode = ({ id }) => {
+  const columns = 17; // 17 kolona (1-17)
+  const topRows = ['A', 'B', 'C', 'D', 'E']; // Gornja sekcija
+  const bottomRows = ['F', 'G', 'H', 'I', 'J']; // Donja sekcija
+
+  // Offseti u % na osnovu slike protoborda
+  const startX = 7.5; // Početak prve kolone s leve strane
+  const stepX = 5.25; // Razmak između kolona
+
+  // Y pozicije po redovima (%)
+  const topY = [12.5, 19.5, 26.5, 33.5, 40.5]; // Redovi A-E
+  const bottomY = [59.5, 66.5, 73.5, 80.5, 87.5]; // Redovi F-J
+
+  const handles = [];
+
+  // Gornja sekcija (A-E)
+  topRows.forEach((row, rIdx) => {
+    for (let c = 1; c <= columns; c++) {
+      const pinId = `${id}-${row}${c}`;
+      const posX = startX + (c - 1) * stepX;
+      const posY = topY[rIdx];
+
+      handles.push(
+        <Handle
+          key={pinId}
+          type="source"
+          position={Position.Top}
+          id={pinId}
+          style={{
+            ...pinStyle,
+            top: `${posY}%`,
+            left: `${posX}%`,
+            width: '6px',
+            height: '6px',
+            background: '#444444',
+            border: '1px solid #ffffff',
+          }}
+          title={`Pin ${row}${c}`}
+        />
+      );
+    }
+  });
+
+  // Donja sekcija (F-J)
+  bottomRows.forEach((row, rIdx) => {
+    for (let c = 1; c <= columns; c++) {
+      const pinId = `${id}-${row}${c}`;
+      const posX = startX + (c - 1) * stepX;
+      const posY = bottomY[rIdx];
+
+      handles.push(
+        <Handle
+          key={pinId}
+          type="source"
+          position={Position.Bottom}
+          id={pinId}
+          style={{
+            ...pinStyle,
+            top: `${posY}%`,
+            left: `${posX}%`,
+            width: '6px',
+            height: '6px',
+            background: '#444444',
+            border: '1px solid #ffffff',
+          }}
+          title={`Pin ${row}${c}`}
+        />
+      );
+    }
+  });
+
+  return (
+    <div style={{ position: 'relative', width: '300px', height: '220px' }}>
+      <img
+        src={process.env.PUBLIC_URL + '/proto.png'}
+        alt="Protoboard 170"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'contain',
+          display: 'block',
+          filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.3))',
+        }}
+      />
+      {handles}
+    </div>
+  );
+};
 
 const UltrasonicNode = ({ id }) => (
   <div style={{ position: 'relative', width: '220px', height: '130px' }}>
@@ -716,6 +804,45 @@ const LdrNode = ({ id }) => (
   </div>
 );
 
+const PirSensorNode = ({ id }) => (
+  <div style={{ position: 'relative', width: '180px', height: '150px' }}>
+    <img
+      src={process.env.PUBLIC_URL + '/pirsensor.png'}
+      alt="PIR Motion Sensor"
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+        display: 'block',
+        filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.4))',
+      }}
+    />
+
+    {/* --- 3 METALNA PINA (Sleva na desno: VCC, OUT, GND) --- */}
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-vcc`}
+      style={{ ...pinStyle, bottom: '22%', left: '33.5%', background: '#ff0000' }}
+      title="VCC (+5V)"
+    />
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-out`}
+      style={{ ...pinStyle, bottom: '17%', left: '38.5%', background: '#f9e2af' }}
+      title="OUT (Digital Output)"
+    />
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-gnd`}
+      style={{ ...pinStyle, bottom: '12%', left: '43.5%', background: '#000000' }}
+      title="GND"
+    />
+  </div>
+);
+
 const RelayNode = ({ id }) => (
   <div style={{ position: 'relative', width: '220px', height: '80px' }}>
     <img
@@ -779,7 +906,9 @@ const nodeTypes = {
   motorNode: MotorNode,
   ledNode: LedNode,
   ldrNode: LdrNode,
-  resistorNode: ResistorNode
+  resistorNode: ResistorNode,
+  pirSensorNode: PirSensorNode,
+  protoboardNode: ProtoboardNode
 };
 
 const WIRE_COLORS = [
@@ -959,7 +1088,9 @@ useEffect(() => {
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'ultrasonicNode')} draggable style={itemStyle}>
           🦇 Ultrazvučni Senzor (HC-SR04)
           </div>
-
+          <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'pirSensorNode')} draggable style={itemStyle}>
+          🚶‍♂️ PIR Senzor Pokreta
+          </div>
 
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'sevenSegmentNode')} draggable style={itemStyle}>
           🔢 7-Segmentni Displej
@@ -983,6 +1114,9 @@ useEffect(() => {
           </div>
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'resistorNode')} draggable style={itemStyle}>
           ⚡ Otpornik
+          </div>
+          <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'protoboardNode')} draggable style={itemStyle}>
+          🔲 Protoboard (170 rupa)
           </div>
 
           <hr style={{ borderColor: '#334155', margin: '15px 0' }} />
