@@ -842,7 +842,124 @@ const PirSensorNode = ({ id }) => (
     />
   </div>
 );
+const OledNode = ({ id }) => (
+  <div style={{ position: 'relative', width: '180px', height: '190px' }}>
+    <img
+      src={process.env.PUBLIC_URL + '/oled.png'}
+      alt="0.96 inch I2C OLED Display"
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+        display: 'block',
+        filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.4))',
+      }}
+    />
 
+    {/* --- 4 PINA NA GORNJOJ IVICI (Sleva na desno: GND, VCC, SCL, SDA) --- */}
+    <Handle
+      type="source"
+      position={Position.Top}
+      id={`${id}-gnd`}
+      style={{ ...pinStyle, top: '3.5%', left: '34.8%', background: '#000000' }}
+      title="GND"
+    />
+    <Handle
+      type="source"
+      position={Position.Top}
+      id={`${id}-vcc`}
+      style={{ ...pinStyle, top: '3.5%', left: '45%', background: '#ff0000' }}
+      title="VCC"
+    />
+    <Handle
+      type="source"
+      position={Position.Top}
+      id={`${id}-scl`}
+      style={{ ...pinStyle, top: '3.5%', left: '54.7%', background: '#f9e2af' }}
+      title="SCL"
+    />
+    <Handle
+      type="source"
+      position={Position.Top}
+      id={`${id}-sda`}
+      style={{ ...pinStyle, top: '3.5%', left: '65.0%', background: '#f9e2af' }}
+      title="SDA"
+    />
+  </div>
+);
+const RfidNode = ({ id }) => (
+  <div style={{ position: 'relative', width: '200px', height: '280px' }}>
+    <img
+      src={process.env.PUBLIC_URL + '/rfid.png'}
+      alt="RFID-RC522 Reader Module"
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+        display: 'block',
+        filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.4))',
+      }}
+    />
+
+    {/* --- 8 PINOVA NA DONJOJ IVICI (Sleva na desno: SDA, SCK, MOSI, MISO, IRQ, GND, RST, 3.3V) --- */}
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-sda`}
+      style={{ ...pinStyle, bottom: '1.2%', left: '27%', background: '#f9e2af' }}
+      title="SDA (SS)"
+    />
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-sck`}
+      style={{ ...pinStyle, bottom: '1.2%', left: '33%', background: '#f9e2af' }}
+      title="SCK"
+    />
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-mosi`}
+      style={{ ...pinStyle, bottom: '1.2%', left: '39.1%', background: '#f9e2af' }}
+      title="MOSI"
+    />
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-miso`}
+      style={{ ...pinStyle, bottom: '1.2%', left: '45.2%', background: '#f9e2af' }}
+      title="MISO"
+    />
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-irq`}
+      style={{ ...pinStyle, bottom: '1.2%', left: '52%', background: '#f9e2af' }}
+      title="IRQ"
+    />
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-gnd`}
+      style={{ ...pinStyle, bottom: '1.2%', left: '58%', background: '#000000' }}
+      title="GND"
+    />
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-rst`}
+      style={{ ...pinStyle, bottom: '1.2%', left: '64%', background: '#f9e2af' }}
+      title="RST"
+    />
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-3v3`}
+      style={{ ...pinStyle, bottom: '1.2%', left: '70%', background: '#ff0000' }}
+      title="3.3V"
+    />
+  </div>
+);
 const RelayNode = ({ id }) => (
   <div style={{ position: 'relative', width: '220px', height: '80px' }}>
     <img
@@ -906,6 +1023,8 @@ const nodeTypes = {
   motorNode: MotorNode,
   ledNode: LedNode,
   ldrNode: LdrNode,
+  oledNode: OledNode,
+  rfidNode: RfidNode,
   resistorNode: ResistorNode,
   pirSensorNode: PirSensorNode,
   protoboardNode: ProtoboardNode
@@ -1102,7 +1221,12 @@ useEffect(() => {
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'irSensorNode')} draggable style={itemStyle}>
           🚨 IR Senzor Prepreka
           </div>
-
+          <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'oledNode')} draggable style={itemStyle}>
+          🖥️ OLED Displej (0.96")
+          </div>
+          <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'rfidNode')} draggable style={itemStyle}>
+          💳 RFID Čitač (RC522)
+          </div>
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'relayNode')} draggable style={itemStyle}>
           ⚡ Relej Modul (5V)
           </div>
