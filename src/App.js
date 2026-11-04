@@ -744,7 +744,7 @@ const BuzzerNode = ({ id }) => (
       type="source"
       position={Position.Bottom}
       id={`${id}-plus`}
-      style={{ ...pinStyle, bottom: '2%', left: '35%', background: '#ff0000' }}
+      style={{ ...pinStyle, bottom: '22%', left: '35%', background: '#ff0000' }}
       title="Pozitivni pin (+)"
     />
     {/* Desni pin (-) */}
@@ -752,7 +752,7 @@ const BuzzerNode = ({ id }) => (
       type="source"
       position={Position.Bottom}
       id={`${id}-minus`}
-      style={{ ...pinStyle, bottom: '2%', left: '67%', background: '#000000' }}
+      style={{ ...pinStyle, bottom: '22%', left: '67%', background: '#000000' }}
       title="Negativni pin (-)"
     />
   </div>
