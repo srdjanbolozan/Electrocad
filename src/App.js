@@ -724,6 +724,40 @@ const ProtoboardNode = ({ id }) => {
   );
 };
 
+const BuzzerNode = ({ id }) => (
+  <div style={{ position: 'relative', width: '120px', height: '140px' }}>
+    <img
+      src={process.env.PUBLIC_URL + '/buzzer.png'}
+      alt="Piezo Buzzer"
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+        display: 'block',
+        filter: 'drop-shadow(0px 4px 6px rgba(0,0,0,0.3))',
+      }}
+    />
+
+    {/* --- NOŽICE BUZERA (Dole) --- */}
+    {/* Levi pin (+) */}
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-plus`}
+      style={{ ...pinStyle, bottom: '2%', left: '35%', background: '#ff0000' }}
+      title="Pozitivni pin (+)"
+    />
+    {/* Desni pin (-) */}
+    <Handle
+      type="source"
+      position={Position.Bottom}
+      id={`${id}-minus`}
+      style={{ ...pinStyle, bottom: '2%', left: '67%', background: '#000000' }}
+      title="Negativni pin (-)"
+    />
+  </div>
+);
+
 const UltrasonicNode = ({ id }) => (
   <div style={{ position: 'relative', width: '220px', height: '130px' }}>
     <img
@@ -1025,6 +1059,7 @@ const nodeTypes = {
   ldrNode: LdrNode,
   oledNode: OledNode,
   rfidNode: RfidNode,
+  buzzerNode: BuzzerNode,
   resistorNode: ResistorNode,
   pirSensorNode: PirSensorNode,
   protoboardNode: ProtoboardNode
@@ -1238,6 +1273,10 @@ useEffect(() => {
           </div>
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'resistorNode')} draggable style={itemStyle}>
           ⚡ Otpornik
+          </div>
+
+          <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'buzzerNode')} draggable style={itemStyle}>
+          🔊 Pijezo Buzer
           </div>
           <div onDragStart={(e) => e.dataTransfer.setData('application/reactflow', 'protoboardNode')} draggable style={itemStyle}>
           🔲 Protoboard (170 rupa)
